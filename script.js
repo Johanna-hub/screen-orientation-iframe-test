@@ -12,15 +12,15 @@ async function iframe() {
     orientations = orientations.reverse();
   }
 
-  function log(event) {
-    console.log(`${event.data}`);
-  }
-
-  window.addEventListener("message", log);
-
   for (const orientation of orientations) {
+    function log(event) {
+      console.log(`${event.data} + ${orientation} should be the same`);
+    }
+    window.addEventListener("message", log);
     await screen.orientation.lock(orientation);
   }
+
+  window.removeEventListener("message", log);
   screen.orientation.unlock();
   return document.exitFullscreen();
 }
