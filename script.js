@@ -2,8 +2,9 @@
 //  "Test subframes receive orientation change events"
 
 async function iframe() {
-  const iframe = document.getElementById("testIframe")
-  await iframe.requestFullscreen();
+  await document.documentElement.requestFullscreen();
+  // const iframe = document.getElementById("testIframe")
+  // await iframe.requestFullscreen();
   let orientations = [
     'portrait-primary',
     'portrait-secondary',
@@ -18,12 +19,12 @@ async function iframe() {
     console.log(`${any}`);
   }
 
-  screen.orientation.addEventListener("change", log(this))
+  screen.orientation.addEventListener("message", log(this))
 
   for (const orientation of orientations) {
     await screen.orientation.lock(orientation);
   }
   screen.orientation.unlock();
-  iframe.exitFullscreen();
+  return document.exitFullscreen();
 }
 
