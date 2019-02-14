@@ -3,7 +3,7 @@
 
 async function iframe() {
   const iframe = document.getElementById("testIframe")
-  iframe.requestFullscreen();
+  await iframe.requestFullscreen();
   let orientations = [
     'portrait-primary',
     'portrait-secondary',
@@ -18,7 +18,7 @@ async function iframe() {
     console.log(`${any}`);
   }
 
-  screen.orientation.addEventListener("message", log("message"))
+  screen.orientation.addEventListener("change", log(this))
 
   for (const orientation of orientations) {
     await screen.orientation.lock(orientation);
