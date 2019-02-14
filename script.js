@@ -12,11 +12,11 @@ async function iframe() {
     orientations = orientations.reverse();
   }
 
-  function log(any) {
-    console.log(`${any}`);
+  function log(event) {
+    console.log(`${event.data}`);
   }
 
-  screen.orientation.addEventListener("message", log(message.data));
+  window.addEventListener("message", log);
 
   for (const orientation of orientations) {
     await screen.orientation.lock(orientation);
