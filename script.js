@@ -1,25 +1,22 @@
-
 //  "Test subframes receive orientation change events"
 
 async function iframe() {
   await document.documentElement.requestFullscreen();
-  // const iframe = document.getElementById("testIframe")
-  // await iframe.requestFullscreen();
   let orientations = [
-    'portrait-primary',
-    'portrait-secondary',
-    'landscape-primary',
-    'landscape-secondary'
+    "portrait-primary",
+    "portrait-secondary",
+    "landscape-primary",
+    "landscape-secondary"
   ];
-  if (screen.orientation.type.includes('portrait')) {
+  if (screen.orientation.type.includes("portrait")) {
     orientations = orientations.reverse();
   }
-  
-  function log(any){
+
+  function log(any) {
     console.log(`${any}`);
   }
 
-  screen.orientation.addEventListener("message", log(message.data))
+  screen.orientation.addEventListener("message", log(message.data));
 
   for (const orientation of orientations) {
     await screen.orientation.lock(orientation);
@@ -27,4 +24,3 @@ async function iframe() {
   screen.orientation.unlock();
   return document.exitFullscreen();
 }
-
