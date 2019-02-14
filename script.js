@@ -18,9 +18,8 @@ async function iframe() {
     }
     window.addEventListener("message", log);
     await screen.orientation.lock(orientation);
+    screen.orientation.unlock();
+    window.removeEventListener("message", log);
   }
-
-  window.removeEventListener("message", log);
-  screen.orientation.unlock();
   return document.exitFullscreen();
 }
