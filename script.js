@@ -19,7 +19,7 @@ async function iframe() {
     console.log(`${any}`);
   }
 
-  screen.orientation.addEventListener("message", log(this))
+  screen.orientation.addEventListener("message", log(message.data))
 
   for (const orientation of orientations) {
     await screen.orientation.lock(orientation);
