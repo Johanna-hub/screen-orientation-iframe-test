@@ -8,6 +8,4 @@ async function lock() {
   } catch (err) {
     console.log(`main doc error: ${err}`)
   }
-  screen.orientation.unlock();
-  return document.exitFullscreen();
 }
