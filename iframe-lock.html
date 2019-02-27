@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Iframe Testing
+    </title>
+    <script>
+      async function iframeLock() {
+        await document.documentElement.requestFullscreen()
+        const currentOrientation = screen.orientation.type;
+        const isPortrait = currentOrientation.includes("portrait");
+        const newOrientation = `${ isPortrait ? "landscape" : "portrait" }-primary`;
+        try {
+          await screen.orientation.lock(newOrientation);
+        } catch (err) {
+          console.log(`iframe error: ${err}`)
+        }
+      }
+    </script>
+    <style>
+       ::backdrop { background-color: white; }
+    </style>
+  </head>
+  <body>
+      <p>
+        Testing iframe 
+      </p> 
+      <button onclick="iframeLock()">iframe lock</button>
+  </body>
+</html>
