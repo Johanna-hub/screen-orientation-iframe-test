@@ -24,4 +24,4 @@ async function iframeLock(){
   }
 }
 
-window.onload = lock();
+// window.onload = lock();
