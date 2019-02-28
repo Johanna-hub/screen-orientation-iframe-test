@@ -18,7 +18,7 @@ async function iframeLock(){
   const newOrientation = `${ isPortrait ? "landscape" : "portrait" }-primary`;
   try {
     await iframe.contentWindow.screen.orientation.lock(newOrientation);
-    console.log(`iframe orientation is ${iframeWindow.screen.orientation.type}`)
+    console.log(`iframe orientation is ${iframe.contentWindow.screen.orientation.type}`)
   } catch (err) {
     console.log(`iframe error: ${err}`)
   }
