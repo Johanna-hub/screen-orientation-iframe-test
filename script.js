@@ -27,11 +27,17 @@ async function iframeLock() {
 }
 
 async function checkFocus() {
+  const iframe = window.frames["testIframe"];
   const focus = document.hasFocus ? "doc" : "iframe";
   const focusOrientation = document.hasFocus
     ? screen.orientation.type
     : iframe.contentWindow.screen.orientation.type;
     console.log(`focused ${focus} has ${focusOrientation}`)
+}
+
+async function checkiframeFocus() {
+  const focus = document.hasFocus ? "iframe" : "doc";
+    console.log(`focused ${focus} has ${screen.orientation.type}`)
 }
 
 // window.onload = lock();
