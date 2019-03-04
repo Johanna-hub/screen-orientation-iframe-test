@@ -26,21 +26,4 @@ async function iframeLock() {
   }
 }
 
-function checkFocus() {
-  const iframe = window.frames["testIframe"];
-  const focus = document.hasFocus ? "doc" : "iframe";
-  const focusOrientation = document.hasFocus
-    ? screen.orientation.type
-    : iframe.contentWindow.screen.orientation.type;
-    console.log(`focused ${focus} has ${focusOrientation}`)
-}
-
-function checkiframeFocus() {
-  if (document.activeElement instanceof HTMLIFrameElement) {
-    console.log(`iframe has ${screen.orientation.type}`)
-  } else {
-    console.log(`doc has the focus and is ${screen.orientation.type}`)
-  } 
-}
-
 // window.onload = lock();
