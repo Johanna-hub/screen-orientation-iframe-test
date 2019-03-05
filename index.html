@@ -14,7 +14,7 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor
+        Screen Orientation Iframe Refactor 1
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
       <button onclick="makeIFrame()">Make iframe</button>
@@ -60,7 +60,7 @@
       iframe.contentWindow.screen.orientation.lock(newFrameOrientation)
       screen.orientation.unlock();
       await document.exitFullscreen();
-      iframe.remove();
+      // iframe.remove();
     }
   </script>
 </html>
