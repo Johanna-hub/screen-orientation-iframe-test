@@ -17,12 +17,14 @@
         Screen Orientation Iframe Refactor
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
+      <button onclick="makeIFrame()">Make iframe</button>
       <button onclick="promise_test(iframeTest)">Iframe Test</button>
   </body>
   <script>
     async function makeIFrame(src = "about:blank") {
       const iframe = document.createElement("iframe");
-      iframe.src = src;
+      iframe.srcdoc = `Test`;
+      iframe.setAttribute('id', 'iframe');
       document.body.appendChild(iframe);
       await new Promise(r => {
         if (iframe.contentDocument.readyState === "complete") {
@@ -32,26 +34,18 @@
       });
       return iframe;
     }
-
+   
     async function promise_test(test) {
       try {
         await test();
       } catch (err) {
-      console.log(err);
+      console.log(`Error is ${err}`);
       }
     }
 
     async function iframeTest() {
-      const iframe = await makeIFrame();
-      iframe.srcdoc = `Test`;
-      document.body.appendChild(iframe);
-      await new Promise(r => {
-        if (iframe.contentDocument.readyState === "complete") {
-        return r(); // it's loaded
-        }
-        iframe.onload = r;
-      });
-
+      const iframe = document.getElementById("iframe");
+      await iframe.requestFullscreen()
       const iframeOrientation = iframe.contentWindow.screen.orientation.type;
       const iframePortrait = iframeOrientation.includes("portrait");
       const newFrameOrientation = `${
@@ -63,7 +57,7 @@
       const newOrientation = `${isPortrait ? "landscape" : "portrait"}-primary`;
 
       screen.orientation.lock(newOrientation);
-      iframe.contentWindow.screen.orientation.lock(newOrientation)
+      iframe.contentWindow.screen.orientation.lock(newFrameOrientation)
       screen.orientation.unlock();
       await document.exitFullscreen();
       iframe.remove();
