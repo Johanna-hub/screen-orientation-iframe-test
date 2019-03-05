@@ -7,21 +7,68 @@
       Iframe Testing
     </title>
     <script src="mobileconsole.js"></script>
-    <script src="script.js"></script>
     <style>
        ::backdrop { background-color: white; }
     </style>
   </head>
   <body>
-    <iframe id="testIframe"
-        src="iframe-lock.html" allowfullscreen="true" sandbox="allow-scripts allow-orientation-lock">
-    </iframe>
     <section>
       <p>
-        Screen Orientation test 5
+        Screen Orientation Iframe Refactor
       </p>
-      <button onclick="iframeLock()">Top Level Lock</button>
+      <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
+      <button onclick="promise_test(iframeTest)">Iframe Test</button>
   </body>
+  <script>
+    async function makeIFrame(src = "about:blank") {
+      const iframe = document.createElement("iframe");
+      iframe.src = src;
+      document.body.appendChild(iframe);
+      await new Promise(r => {
+        if (iframe.contentDocument.readyState === "complete") {
+        return r(); // it's loaded
+        }
+        iframe.onload = r;
+      });
+      return iframe;
+    }
+
+    async function promise_test(test) {
+      try {
+        await test();
+      } catch (err) {
+      console.log(err);
+      }
+    }
+
+    async function iframeTest() {
+      const iframe = await makeIFrame();
+      iframe.srcdoc = `Test`;
+      document.body.appendChild(iframe);
+      await new Promise(r => {
+        if (iframe.contentDocument.readyState === "complete") {
+        return r(); // it's loaded
+        }
+        iframe.onload = r;
+      });
+
+      const iframeOrientation = iframe.contentWindow.screen.orientation.type;
+      const iframePortrait = iframeOrientation.includes("portrait");
+      const newFrameOrientation = `${
+        iframePortrait ? "landscape" : "portrait"
+      }-primary`;
+
+      const currentOrientation = screen.orientation.type;
+      const isPortrait = currentOrientation.includes("portrait");
+      const newOrientation = `${isPortrait ? "landscape" : "portrait"}-primary`;
+
+      screen.orientation.lock(newOrientation);
+      iframe.contentWindow.screen.orientation.lock(newOrientation)
+      screen.orientation.unlock();
+      await document.exitFullscreen();
+      iframe.remove();
+    }
+  </script>
 </html>
 
 
