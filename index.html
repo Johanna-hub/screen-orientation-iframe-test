@@ -14,7 +14,7 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor 1
+        Screen Orientation Iframe Refactor 2
 
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
@@ -58,7 +58,12 @@
       const newOrientation = `${isPortrait ? "landscape" : "portrait"}-primary`;
 
       screen.orientation.lock(newOrientation);
-      iframe.contentWindow.screen.orientation.lock(newFrameOrientation)
+      try {
+        iframe.contentWindow.screen.orientation.lock(newFrameOrientation)
+      } catch (err) {
+        console.log(`Iframe error is ${err}`);
+      }
+      
       // screen.orientation.unlock();
       // await document.exitFullscreen();
       // iframe.remove();
