@@ -15,6 +15,7 @@
     <section>
       <p>
         Screen Orientation Iframe Refactor 1
+
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
       <button onclick="makeIFrame()">Make iframe</button>
@@ -24,7 +25,7 @@
     async function makeIFrame(src = "about:blank") {
       const iframe = document.createElement("iframe");
       iframe.srcdoc = `Test`;
-      iframe.setAttribute('id', 'iframe');
+      iframe.id = 'iframe';
       document.body.appendChild(iframe);
       await new Promise(r => {
         if (iframe.contentDocument.readyState === "complete") {
@@ -44,7 +45,7 @@
     }
 
     async function iframeTest() {
-      const iframe = document.getElementById("iframe");
+      const iframe = document.querySelector("iframe");
       await iframe.requestFullscreen()
       const iframeOrientation = iframe.contentWindow.screen.orientation.type;
       const iframePortrait = iframeOrientation.includes("portrait");
@@ -58,8 +59,8 @@
 
       screen.orientation.lock(newOrientation);
       iframe.contentWindow.screen.orientation.lock(newFrameOrientation)
-      screen.orientation.unlock();
-      await document.exitFullscreen();
+      // screen.orientation.unlock();
+      // await document.exitFullscreen();
       // iframe.remove();
     }
   </script>
