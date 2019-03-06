@@ -28,7 +28,6 @@
       const iframe = document.createElement("iframe");
       iframe.srcdoc = `Test`;
       iframe.id = 'iframe';
-      iframe.sandbox = 'allow-scripts allow-orientation-lock'
       document.body.appendChild(iframe);
       await new Promise(r => {
         if (iframe.contentDocument.readyState === "complete") {
