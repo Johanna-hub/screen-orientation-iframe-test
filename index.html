@@ -14,7 +14,7 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor 12
+        Screen Orientation Iframe Refactor 13
 
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
@@ -74,7 +74,11 @@
 
     async function iframeTest2() {
       const iframe = document.querySelector("iframe");
-      await iframe.contentWindow.screen.orientation.lock("landscape-primary");
+      try {
+        await iframe.contentWindow.screen.orientation.lock("landscape-primary");
+      } catch(err) {
+        console.log(`this is the ${err}`);
+      }
       window.location.href = "https://github.com"
     }
   </script>
