@@ -14,12 +14,12 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor 5
+        Screen Orientation Iframe Refactor 6
 
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
       <button onclick="makeIFrame()">Make iframe</button>
-      <button onclick="promise_test(iframeTest)">Iframe Test</button>
+      <button onclick="iframeTest()">Iframe Test</button>
   </body>
   <script>
     async function makeIFrame(src = "about:blank") {
@@ -36,13 +36,13 @@
       return iframe;
     }
    
-    async function promise_test(test) {
-      try {
-        await test();
-      } catch (err) {
-      console.log(`Error is ${err}`);
-      }
-    }
+    // async function promise_test(test) {
+    //   try {
+    //     await test();
+    //   } catch (err) {
+    //   console.log(`Error is ${err}`);
+    //   }
+    // }
 
     async function iframeTest() {
       const iframe = document.querySelector("iframe");
