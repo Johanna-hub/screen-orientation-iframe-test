@@ -50,17 +50,16 @@
       const isPortrait = currentOrientation.includes("portrait");
       const newOrientation = `${isPortrait ? "landscape" : "portrait"}`
       try {
-        await screen.orientation.lock(`${newOrientation}-primary`);
-        console.log(screen.orientation.type)
+        screen.orientation.lock(`${newOrientation}-primary`);
       } catch (err) {
         console.log(`Window error is ${err}`);
       }
       try {
-        await iframe.contentWindow.screen.orientation.lock(`${newOrientation}-secondary`);
-        console.log(screen.orientation.type)
+        iframe.contentWindow.screen.orientation.lock(`${newOrientation}-secondary`);
       } catch (err) {
         console.log(`Iframe error is ${err}`);
       }
+      console.log(screen.orientation.type)
       // screen.orientation.unlock();
       // await document.exitFullscreen();
       // iframe.remove();
