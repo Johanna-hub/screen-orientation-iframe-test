@@ -14,7 +14,7 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor 6
+        Screen Orientation Iframe Refactor 7
 
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
@@ -66,9 +66,9 @@
       } catch (err) {
         console.log(`Iframe error is ${err}`);
       }
-      screen.orientation.unlock();
-      await document.exitFullscreen();
-      iframe.remove();
+      // screen.orientation.unlock();
+      // await document.exitFullscreen();
+      // iframe.remove();
     }
   </script>
 </html>
