@@ -14,13 +14,14 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor 11
+        Screen Orientation Iframe Refactor 12
 
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
       <button onclick="makeIFrame()">Make iframe</button>
       <button onclick="iframeTest()">Iframe Test</button>
       <button onclick="logOrientation()">Log orientation</button>
+      <button onclick="iframeTest2()">Iframe navigation</button>
   </body>
   <script>
     async function makeIFrame(src = "about:blank") {
@@ -66,9 +67,15 @@
       } catch (err) {
         console.log(`Iframe error is ${err}`);
       }
-      // screen.orientation.unlock();
-      // await document.exitFullscreen();
-      // iframe.remove();
+      screen.orientation.unlock();
+      await document.exitFullscreen();
+      iframe.remove();
+    }
+
+    async function iframeTest2() {
+      const iframe = document.querySelector("iframe");
+      await iframe.contentWindow.screen.orientation.lock("landscape-primary");
+      window.location.href = "https://github.com"
     }
   </script>
 </html>
