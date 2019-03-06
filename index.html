@@ -36,33 +36,33 @@
       return iframe;
     }
    
-    // async function promise_test(test) {
-    //   try {
-    //     await test();
-    //   } catch (err) {
-    //   console.log(`Error is ${err}`);
-    //   }
-    // }
+    async function promise_test(test) {
+      try {
+        await test();
+      } catch (err) {
+      console.log(`Error is ${err}`);
+      }
+    }
 
     async function iframeTest() {
       const iframe = document.querySelector("iframe");
       await iframe.requestFullscreen()
-      const iframeOrientation = iframe.contentWindow.screen.orientation.type;
-      const iframePortrait = iframeOrientation.includes("portrait");
-      const newFrameOrientation = `${
-        iframePortrait ? "landscape" : "portrait"
-      }-primary`;
+      // const iframeOrientation = iframe.contentWindow.screen.orientation.type;
+      // const iframePortrait = iframeOrientation.includes("portrait");
+      // const newFrameOrientation = `${
+      //   iframePortrait ? "landscape" : "portrait"
+      // }-primary`;
 
-      const currentOrientation = screen.orientation.type;
-      const isPortrait = currentOrientation.includes("portrait");
-      const newOrientation = `${isPortrait ? "landscape" : "portrait"}-primary`;
+      // const currentOrientation = screen.orientation.type;
+      // const isPortrait = currentOrientation.includes("portrait");
+      // const newOrientation = `${isPortrait ? "landscape" : "portrait"}-primary`;
       try {
-        screen.orientation.lock(newOrientation);
+        screen.orientation.lock("landscape-primary");
       } catch (err) {
         console.log(`Window error is ${err}`);
       }
       try {
-        iframe.contentWindow.screen.orientation.lock(newFrameOrientation)
+        iframe.contentWindow.screen.orientation.lock("landscape-secondary");
       } catch (err) {
         console.log(`Iframe error is ${err}`);
       }
