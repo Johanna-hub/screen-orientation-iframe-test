@@ -14,7 +14,7 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor 13
+        Screen Orientation Iframe Refactor 14
 
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
@@ -28,6 +28,7 @@
       const iframe = document.createElement("iframe");
       iframe.srcdoc = `Test`;
       iframe.id = 'iframe';
+      iframe.sandbox = 'allow-scripts allow-orientation-lock'
       document.body.appendChild(iframe);
       await new Promise(r => {
         if (iframe.contentDocument.readyState === "complete") {
