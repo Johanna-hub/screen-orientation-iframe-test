@@ -14,7 +14,7 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor 16
+        Screen Orientation Iframe Refactor 17
 
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
@@ -55,8 +55,7 @@
     function getOppositeOrientation() {
       const currentOrientation = screen.orientation.type;
       const isPortrait = currentOrientation.includes("portrait");
-      const newOrientation = `${isPortrait ? "landscape" : "portrait"}`
-      return newOrientation;
+      return newOrientation = `${isPortrait ? "landscape" : "portrait"}`
     }
     
     async function iframeTest() {
