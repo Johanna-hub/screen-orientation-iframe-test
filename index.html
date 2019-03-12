@@ -14,7 +14,7 @@
   <body>
     <section>
       <p>
-        Screen Orientation Iframe Refactor 14
+        Screen Orientation Iframe Refactor 15
 
       </p>
       <button onclick=document.documentElement.requestFullscreen()>Full Screen</button>
@@ -52,11 +52,16 @@
       console.log(`iframe is ${iframe.contentWindow.screen.orientation.type}`);
     }
 
-    async function iframeTest() {
-      const iframe = document.querySelector("iframe");
+    function getOppositeOrientation() {
       const currentOrientation = screen.orientation.type;
       const isPortrait = currentOrientation.includes("portrait");
       const newOrientation = `${isPortrait ? "landscape" : "portrait"}`
+      return newOrientation;
+    }
+    
+    async function iframeTest() {
+      const iframe = document.querySelector("iframe");
+      const newOrientation = getOppositeOrientation();
       try {
         screen.orientation.lock(`${newOrientation}-primary`);
       } catch (err) {
